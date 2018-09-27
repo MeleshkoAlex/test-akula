@@ -1,0 +1,27 @@
+
+@font-face {
+  font-family: 'Lato-Heavy';
+
+  font-weight: normal;
+  font-style: normal;
+  font-weight: 800;
+  src: url('../font/lato-heavy-webfont.ttf');
+}
+@font-face {
+  font-family: 'GothamPro';
+  font-style: normal;
+  font-weight: 900;
+  src: local('GothamPro Black'), local('GothamPro-Black'), url(../font/GothamPro-Black.ttf);
+}
+@font-face {
+ font-family: 'GothamPro';
+ font-style: normal;
+ font-weight: 700;
+ src: local('GothamPro bold'), local('GothamPro-Bold'), url(../font/GothamPro-Bold.ttf);
+}
+@font-face {
+ font-family: 'GothamPro';
+ font-style: normal;
+ font-weight: 400;
+ src: local('GothamPro'), local('GothamPro'), url(../font/GothamPro.ttf);
+}
