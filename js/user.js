@@ -63,27 +63,13 @@ $(document).ready(function(){
 	var slickCarousel = $('#slider');
 	slickCarousel.slick({
 		slidesToScroll: 1,
-		arrows: false,
+		arrows: true,
 		infinite: true,
 		autoplay: true,
 		vertical: true,
 		autoplaySpeed: 111000,
 		cssEase: 'linear',
-		vertical: true,
-		responsive: [
-		{
-			breakpoint: 2900,
-			settings: {
-				arrows:true
-			}
-		},
-		{
-			breakpoint: 1292,
-			settings: {
-				arrows:false
-			}
-		}
-		]
+		vertical: true
 	});
 	slickCarousel.mousewheel(function(e) {
 		e.preventDefault();
