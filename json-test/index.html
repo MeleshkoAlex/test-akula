@@ -1,0 +1,83 @@
+<html>
+  <head>
+    <title>test task</title>
+    <meta charset="UTF-8">
+    <style>
+      a.get-data {
+        color: #000;
+        text-decoration: none;    
+        padding: 10px;  
+        border:1px solid #000;
+        margin:10px;
+        display: inline-block;        
+      }
+      a.get-data:hover {
+        background: #000;
+        color: #fff;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+   function loadData(desc){
+        var result = document.getElementById('result');
+        var xmlhttp = new XMLHttpRequest();
+
+          function sortJSON(arr,array,rate){
+            for(var i = 0,len = arr.length; i < len;i++){
+              rate = arr[i].rate;
+              if(rate >= 4){
+               array.push(arr[i]);
+             }
+           }
+           array.sort(function(obj1, obj2){
+            if(desc){
+              return obj2.price-obj1.price;
+            }else{
+              return obj1.price-obj2.price;
+            }
+            
+          });
+           result.innerHTML = '<ul></ul>';
+           for(var k = 0,len = 3;k < len; k++){
+            var li = document.createElement('li');
+            li.innerHTML = array[k].title + " - " + array[k].price;
+            result.firstElementChild.appendChild(li);
+          }
+        };
+
+        xmlhttp.onreadystatechange = function() {
+          if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            var arr =  xmlhttp.response.items;
+            var array = [];
+            var rate = null;
+            if(desc){
+              sortJSON(arr,array,rate,desc);
+            }else if(desc === false){
+              sortJSON(arr,array,rate,desc);
+            }
+          }
+        }
+
+    xmlhttp.open('get', 'data.json', true);
+    xmlhttp.responseType = 'json';
+    xmlhttp.send();
+
+
+  }
+    </script>
+  </head>
+  <body>
+    <div class="task">
+      <strong>Задача:</strong>
+      <ul>
+        <li>Получить данные из файла data.json</li>
+        <li>При нажатии на кнопку <strong>Получить данные по убыванию</strong> вывести список из наименований трех самых дорогих (поле price) с рейтингом более 4 по убыванию цены в виде "Наименование - цена" в <strong>div#result</strong></li>
+        <li>При нажатии на кнопку <strong>Получить данные по возрастанию<</strong> вывести список из наименований трех самых дорогих (поле price) с рейтингом более 4 по возрастанию цены в виде "Наименование - цена"  в <strong>div#result</strong></li>
+      </ul>
+      <div>Заготовка функции <strong>loadData()</strong> представлена в коде в строках 21-23.</div>      
+    </div>
+    <div id="result"></div>
+    <a href="#" onclick="loadData(true);" class="get-data">Получить данные по убыванию</a>
+    <a href="#" onclick="loadData(false);" class="get-data">Получить данные по возрастанию</a>
+  </body>
+  </html>
